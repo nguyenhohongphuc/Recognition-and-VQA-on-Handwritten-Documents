@@ -1,4 +1,3 @@
-# Sử dụng Image có sẵn PyTorch và CUDA 12.1 (Phù hợp với RTX 4060 của bạn)
 FROM pytorch/pytorch:2.1.2-cuda12.1-cudnn8-runtime
 
 # Thiết lập thư mục làm việc
@@ -17,7 +16,6 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir fastapi uvicorn python-multipart gdown
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy toàn bộ code đồ án vào Docker
 COPY . .
 # Thiết lập thư mục làm việc
 WORKDIR /app

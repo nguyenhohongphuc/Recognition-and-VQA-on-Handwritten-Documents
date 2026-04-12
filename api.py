@@ -10,10 +10,10 @@ import Config.config as pipeline_config
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    print("🚀 Đang khởi động Server API...")
-    print("✅ Hệ thống AI đã sẵn sàng!")
+    print("Đang khởi động Server API...")
+    print("Hệ thống AI đã sẵn sàng!")
     yield
-    print("🛑 Đang tắt Server...")
+    print("Đang tắt Server...")
 
 app = FastAPI(lifespan=lifespan, title="Handwritten VQA API")
 
@@ -88,7 +88,7 @@ async def predict_vqa(
         # Dọn rác
         if os.path.exists(img_path): os.remove(img_path)
         if os.path.exists(question_path): os.remove(question_path)
-        if os.path.exists(final_result_file): os.remove(final_result_file)
+        #if os.path.exists(final_result_file): os.remove(final_result_file)
 
         return {
             "status": "success",

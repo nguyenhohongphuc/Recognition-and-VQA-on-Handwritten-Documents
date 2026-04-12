@@ -72,10 +72,10 @@ def main():
                 continue
         
         # Trích xuất text blocks để làm context
-        if 'input' not in context_data or 'text_blocks' not in context_data['input']:
+        if 'output_predicted' not in context_data or 'text_blocks' not in context_data['output_predicted']:
             continue
             
-        full_text_blocks = [f"[{block.get('type', 'BODY').upper()}]: {block.get('text', '')}" for block in context_data['input']['text_blocks']]
+        full_text_blocks = [f"[{block.get('type', 'BODY').upper()}]: {block.get('text', '')}" for block in context_data['output_predicted']['text_blocks']]
         full_context = " \n".join(full_text_blocks)
         
         file_results = {"file_name": file_name, "predictions": {}}
@@ -83,7 +83,9 @@ def main():
         # Duyệt qua từng câu hỏi trong file input_text
         for q_id, question_text in questions_dict.items():
             prompt = alpaca_prompt.format(question_text, full_context, "")
-            
+            print("\n=== NỘI DUNG THỰC SỰ ĐƯA VÀO CHO AI ĐỌC ===")
+            print(prompt)
+            print("===========================================\n")
             inputs = tokenizer(prompt, return_tensors="pt", truncation=True, max_length=2048).to("cuda")
             
             with torch.no_grad():
