@@ -64,7 +64,7 @@ def main():
             except json.JSONDecodeError:
                 continue
 
-        # Đọc dữ liệu câu hỏi (Questions)
+        # Đọc dữ liệu câu hỏi (Questions)        #
         with open(question_file_path, 'r', encoding='utf-8') as f:
             try:
                 questions_dict = json.load(f)
